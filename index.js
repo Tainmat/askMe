@@ -6,25 +6,13 @@ const port = 8080;
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
-app.get('/:nome/:lang', (req, res) => {
-    var nome = req.params.nome;
-    var lang = req.params.lang;
-    var showMessage = false;
-
-    var products = [
-        { name: 'Doritos', price: 3.14 },
-        { name: 'Coca-Cola', price: 5.0 },
-        { name: 'Trakinas', price: 2.00}
-    ];
-
-    res.render('index.ejs', {
-        nome: nome,
-        lang: lang,
-        message: showMessage,
-        company: 'MTCorp',
-        products: products,
-    });
+app.get('/', (req, res) => {
+    res.render('index.ejs');
 });
+
+app.get('/ask', (req, res) => {
+  res.render('ask.ejs')
+})
 
 app.listen(port, () => {
     console.log(`[APP IS RUN]: http://localhost:${port}/`);
