@@ -37,3 +37,11 @@ html {
 .container form button{
   margin-top: 1rem
 }
+
+body {
+  background-color: var(--light-blue)
+}
+
+#askForm {
+  margin-top: 1rem
+}
