@@ -1,58 +1,30 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/global.css" />
-
-    <title>Guia Perguntas</title>
-  </head>
-  <body>
-    <nav class="navbar navbar-light bg-primary">
-      <a class="navbar-brand" href="/">
-        <img src="/img/guia.png" alt="Logo Guia do Programador" />
-      </a>
-    </nav>
-
-    <div class="container" id="askForm">
-      <div class="card">
-        <div class="card-header">
-          <h3>Realizar pergunta</h3>
-        </div>
-        <div class="card-body">
-          <form>
-            <label for="tittle">Título</label>
-            <input
-              class="form-control"
-              id="tittle"
-              type="text"
-              placeholder="Título"
-            />
-            <label for="ask">Descrição</label>
-            <textarea
-              class="form-control"
-              id="ask"
-              placeholder="Descreva sua pergunta aqui"
-            ></textarea>
-            <button class="btn btn-primary">Perguntar</button>
-          </form>
-        </div>
+<%- include ('partials/header.ejs')%>
+<body>
+  <%- include ('partials/navbar.ejs')%>
+  <div class="container" id="askForm">
+    <div class="card">
+      <div class="card-header">
+        <h3>Realizar pergunta</h3>
+      </div>
+      <div class="card-body">
+        <form method="POST" action="/saveask">
+          <label>Título</label>
+          <input
+            name="titulo"
+            class="form-control"
+            type="text"
+            placeholder="Título"
+          />
+          <label>Descrição</label>
+          <textarea
+            name="descricao"
+            class="form-control"
+            placeholder="Descreva sua pergunta aqui"
+          ></textarea>
+          <button class="btn btn-primary">Perguntar</button>
+        </form>
       </div>
     </div>
-  </body>
-  <script
-    src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-    crossorigin="anonymous"
-  ></script>
-  <script src="/js/bootstrap.min.js"></script>
-</html>
+  </div>
+</body>
+<%- include ('partials/scripts.ejs')%>
