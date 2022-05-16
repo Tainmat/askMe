@@ -1,7 +1,18 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const connection = require("./database/database.js");
 const port = 8080;
+
+/* Database */
+connection
+  .authenticate()
+  .then(() => {
+    console.log("[SUSSESSFULL]");
+  })
+  .catch(() => {
+    console.log(msgErro);
+  });
 
 /* Atribuindo EJS como View Engine */
 app.set("view engine", "ejs");
