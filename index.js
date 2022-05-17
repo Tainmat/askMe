@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const connection = require("./database/database.js");
-const questionModel = require("./database/Question.js");
+const QuestionModel = require("./database/Question.js");
 const port = 8080;
 
 /* Database */
@@ -24,7 +24,13 @@ app.use(bodyParser.urlencoded({ extend: false }));
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  res.render("index.ejs");
+  QuestionModel.findAll({ raw: true, order: [["createdAt", "DESC"]] }).then(
+    (questions) => {
+      res.render("index.ejs", {
+        questions: questions,
+      });
+    }
+  );
 });
 
 app.get("/ask", (req, res) => {
@@ -32,9 +38,32 @@ app.get("/ask", (req, res) => {
 });
 
 app.post("/saveask", (req, res) => {
-  var tittle = req.body.titulo;
+  var title = req.body.titulo;
   var description = req.body.descricao;
-  res.send(`[Tittle]: ${tittle} | [Description]: ${description}`);
+  // res.send(`[Tittle]: ${tittle} | [Description]: ${description}`);
+
+  QuestionModel.create({
+    /* INSERT */ NM_TITL: title,
+    DS_QUES: description,
+  }).then(() => {
+    res.redirect("/");
+  });
+});
+
+app.get("/asks/:id", (req, res) => {
+  var idAsk = req.params.id;
+
+  QuestionModel.findOne({
+    where: { id: idAsk },
+  }).then((question) => {
+    if (question != undefined) {
+      res.render("asks", {
+        questionId: question,
+      });
+    } else {
+      res.redirect("/");
+    }
+  });
 });
 
 app.listen(port, () => {
