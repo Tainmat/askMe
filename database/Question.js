@@ -12,8 +12,6 @@ const Question = connection.define("TB_QUES", {
   },
 });
 
-Question.sync({ force: false }).then(() => {
-  console.log("TB_QUES criada com sucesso");
-});
+Question.sync({ force: false }).then(() => {});
 
 module.exports = Question;

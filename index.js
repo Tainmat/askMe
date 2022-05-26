@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const connection = require("./database/database.js");
 const QuestionModel = require("./database/Question.js");
+const AnswerModel = require("./database/Answer.js");
 const port = 8080;
 
 /* Database */
